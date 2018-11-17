@@ -130,8 +130,8 @@
             <Label Grid.Column="0" Grid.Row="2" Content="Gender:" FontSize="25" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             
             <Label x:Name="AgeLabel" Grid.Column="1" Grid.Row="0" Content="34" FontSize="25" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Label x:Name="ClassLabel" Grid.Column="2" Grid.Row="2" Content="Hipster" FontSize="25" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Label x:Name="EmotionLabel" Grid.Column="3" FontFamily="Segoe UI Symbol"  Grid.Row="0" Content="&#x1F61F;" FontSize="56" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label x:Name="ClassLabel" Grid.Column="3" Grid.Row="0" Content="Hipster" FontSize="25" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label x:Name="EmotionLabel" Grid.Column="2" FontFamily="Segoe UI Symbol"  Grid.Row="2" Content="&#x1F61F;" FontSize="56" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Label x:Name="GenderLabel" Grid.Column="1" Grid.Row="2" Content="Male" FontSize="25" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             
             
