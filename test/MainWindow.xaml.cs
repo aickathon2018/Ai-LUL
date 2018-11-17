@@ -36,27 +36,27 @@ namespace test
         public MainWindow()
         {
             InitializeComponent();
-            backgroundWorker1.DoWork +=
-                new DoWorkEventHandler(backgroundWorker1_DoWork);
-            backgroundWorker1.RunWorkerCompleted +=
-                new RunWorkerCompletedEventHandler(
-            backgroundWorker1_RunWorkerCompleted);
+            DataUpdateTimer = new DispatcherTimer();
+            DataUpdateTimer.Tick += new EventHandler(DataUpdate_tick);
+            DataUpdateTimer.Interval = new TimeSpan(0, 0, 1);
+            DataUpdateTimer.Start();
             //CaptureFrame.IsEnabled = false;
         }
 
         private void DataUpdate_tick(object sender, EventArgs e)
         {
-            
+            EmotionLabel2.Content = "Reading!";
+            DisplayLatestData();
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            
+
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            //StartPython();
+            StartPython();
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -87,17 +87,40 @@ namespace test
             using (System.Drawing.Bitmap source = image.Bitmap)
             {
                 IntPtr ptr = source.GetHbitmap(); //obtain the Hbitmap
-                
+
                 BitmapSource bs = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(ptr, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
 
                 return bs;
             }
         }
 
+        private void clearFolder(string FolderName)
+        {
+            DirectoryInfo dir = new DirectoryInfo(FolderName);
+
+            foreach (FileInfo fi in dir.GetFiles())
+            {
+                try
+                {
+                    fi.Delete();
+                }
+                catch
+                {
+
+                }
+            }
+
+            foreach (DirectoryInfo di in dir.GetDirectories())
+            {
+                clearFolder(di.FullName);
+                di.Delete();
+            }
+        }
+
         private void StartCapture_Click(object sender, RoutedEventArgs e)
         {
             //StartPython();
-           
+
             CaptureFrame.IsEnabled = true;
             capture = new VideoCapture();
             head = new CascadeClassifier(@"haarcascade_frontalface_default.xml");
@@ -106,15 +129,17 @@ namespace test
             timer.Tick += new EventHandler(timer_Tick);
             timer.Interval = new TimeSpan(1);       //set the refresh rate to 1 mili seconds
             timer.Start();
-            DataUpdateTimer = new DispatcherTimer();
-            DataUpdateTimer.Tick += new EventHandler(DataUpdate_tick);
-            DataUpdateTimer.Interval = new TimeSpan(0,0,0,0,1);
-            DataUpdateTimer.Start();
 
             //start capture images with webcam
             capture.Start();
             //backgroundWorker1.RunWorkerAsync();
+            clearFolder(@"OUTPUT_PICS_body");
+            backgroundWorker1.RunWorkerAsync();
+
+
         }
+
+
 
         int counter = 0;
         private void CaptureFrame_Click(object sender, RoutedEventArgs e)
@@ -156,7 +181,7 @@ namespace test
                 counter++;
             }
             Thread.Sleep(1000);
-            DisplayLatestData();
+            //isplayLatestData();
         }
 
         int imagecounter = 1;
@@ -166,12 +191,12 @@ namespace test
             {
                 imagecounter--;
                 Console.WriteLine(imagecounter);
-                Advertisement.Source = new BitmapImage(new Uri(@"C:\Users\User\Desktop\AIHackathon\test\test\adimages\image" + imagecounter + ".jpeg"));
+                Advertisement.Source = new BitmapImage(new Uri(@"C:\Users\ivanl\OneDrive\Documents\GitHub\AI-LUL-FINAL\test\adimages\image" + imagecounter + ".jpeg"));
             }
             else
             {
                 imagecounter = 4;
-                Advertisement.Source = new BitmapImage(new Uri(@"C:\Users\User\Desktop\AIHackathon\test\test\adimages\image" + imagecounter + ".jpeg"));
+                Advertisement.Source = new BitmapImage(new Uri(@"C:\Users\ivanl\OneDrive\Documents\GitHub\AI-LUL-FINAL\test\adimages\image" + imagecounter + ".jpeg"));
             }
         }
 
@@ -181,12 +206,12 @@ namespace test
             {
                 imagecounter++;
                 Console.WriteLine(imagecounter);
-                Advertisement.Source = new BitmapImage(new Uri(@"C:\Users\User\Desktop\AIHackathon\test\test\adimages\image" + imagecounter + ".jpeg"));
+                Advertisement.Source = new BitmapImage(new Uri(@"C:\Users\ivanl\OneDrive\Documents\GitHub\AI-LUL-FINAL\test\adimages\image" + imagecounter + ".jpeg"));
             }
             else
             {
                 imagecounter = 1;
-                Advertisement.Source = new BitmapImage(new Uri(@"C:\Users\User\Desktop\AIHackathon\test\test\adimages\image" + imagecounter + ".jpeg"));
+                Advertisement.Source = new BitmapImage(new Uri(@"C:\Users\ivanl\OneDrive\Documents\GitHub\AI-LUL-FINAL\test\adimages\image" + imagecounter + ".jpeg"));
             }
         }
 
@@ -202,12 +227,11 @@ namespace test
             thisButt.Background = Brushes.Black;
         }
 
-        private void StartPython()
+        private async void StartPython()
         {
-            string python = @"py.exe";
+            string python = @"runfile.bat";
 
             // python app to call 
-            string myPythonApp = @"C:\Users\ivanl\OneDrive\Documents\GitHub\AI-LUL-WPF-Version\test\bin\Debug\WEB_SERVER.py";
             //string myPythonApp = "WEB_SERVER.py";
             // Create new process start info 
             ProcessStartInfo myProcessStartInfo = new ProcessStartInfo(python);
@@ -219,7 +243,7 @@ namespace test
             // start python app with 3 arguments  
             // 1st arguments is pointer to itself,  
             // 2nd and 3rd are actual arguments we want to send 
-            myProcessStartInfo.Arguments = myPythonApp;
+            //myProcessStartInfo.Arguments = myPythonApp;
 
             Process myProcess = new Process();
             // assign start information to the process 
@@ -235,7 +259,7 @@ namespace test
             string one = myStreamReader.ReadLine();
             string two = myStreamReader.ReadLine();
             string three = myStreamReader.ReadLine();
-            Debug.Print(one+two+three);
+            //Debug.Print(one + two + three);
             myProcess.WaitForExit();
             myProcess.Close();
         }
@@ -243,20 +267,84 @@ namespace test
         private void DisplayLatestData()
         {
             List<string> searchList = new List<string>();
+            string style;
             try
             {
                 var reader = new StreamReader(File.OpenRead(@"data.csv"));
+                string line = "";
                 while (!reader.EndOfStream)
                 {
-                    var line = reader.ReadLine();
-                    Console.WriteLine(line);
+                    line = reader.ReadLine();
                     searchList.Add(line);
                 }
                 reader.Close();
+                reader = new StreamReader(File.OpenRead(@"useless.csv"));
+                Console.WriteLine(line);
                 string[] words = line.Split(',');
                 AgeLabel.Content = words[1];
                 GenderLabel.Content = words[2];
-                ClassLabel.Content = words[10];
+                int age = Convert.ToInt32(AgeLabel.Content);
+
+
+
+                style = words[10];
+                if(style == "Electic" && (age <30 && age > 16))
+                {
+                    ClassLabel.Content = "Hypebeast Student";
+                }
+                else if (age < 20 && age >10)
+                {
+                    ClassLabel.Content = "Schoolchildren";
+                }
+                else if (age > 55)
+                {
+                    ClassLabel.Content = "Retiree";
+                }
+                else if (style == "Casual" && (age < 30 && age > 16))
+                {
+                    ClassLabel.Content = "Casual Student";
+                }
+                else if ((style == "Business") && (age < 60 && age > 30))
+                {
+                    ClassLabel.Content = "Office Worker";
+                }
+                else if ((style == "Outdoor" || style == "Denim") && (age < 60 && age > 30))
+                {
+                    ClassLabel.Content = "Young Adult";
+                }
+                else if ((style == "Electic" || style == "Elegant") && (age < 60 && age > 30))
+                {
+                    ClassLabel.Content = "Rich-upperclass";
+                }
+                else if ((style == "Vintage" || style == "Rocker" || style == "90s"|| style == "Bohemian"))
+                {
+                    ClassLabel.Content = "Hipster";
+                }
+                else if (GenderLabel.Content == "Female" && (style == "Sexy"||style == "Elegant"))
+                {
+                    ClassLabel.Content = "Femme fatale";
+                }
+                else if (style == "Casual")
+                {
+                    ClassLabel.Content = "Engineer/Programmer";
+                }
+                else if (style == "Rocker")
+                {
+                    ClassLabel.Content = "Musician/Artist";
+                }
+                else if (age < 30 && style == "Elegant")
+                {
+                    ClassLabel.Content = "Youth - Affluent";
+                }
+                else if (age < 30)
+                {
+                    ClassLabel.Content = "Youth - middle class";
+                }
+                else
+                {
+                    ClassLabel.Content = "Middle-class adult";
+                }
+
 
                 List<string> emotionlist = new List<string> { "Angry", "Disgust", "Fear", "Happy", "Sad", "Surprised", "Neutral" };
 
@@ -314,8 +402,13 @@ namespace test
 
             }
 
-            
-            return searchList;
+
+            return;
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

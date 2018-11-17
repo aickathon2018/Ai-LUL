@@ -14,7 +14,7 @@ while(1):
         list_of_files = glob.glob('OUTPUT_PICS_body\\*.jpg') # * means all if need specific format then *.csv
         latest_file = max(list_of_files, key=os.path.getctime)
        
-        #print(list_of_files)
+        print(latest_file)
         file_fashion = latest_file
         file_face = latest_file
            
