@@ -243,6 +243,7 @@ namespace test
         private List<string> loadCsvFile()
         {
             List<string> searchList = new List<string>();
+
             try {
                 var reader = new StreamReader(File.OpenRead(@"data.csv"));
                 while (!reader.EndOfStream)
