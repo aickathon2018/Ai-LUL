@@ -279,31 +279,31 @@ namespace test
 
                     if(emotionlist[finalemotion] == "Happy")
                     {
-                        EmotionLabel.Content = "&#x1F604;";
+                        EmotionLabel.Content = char.ConvertFromUtf32(0x1F604);
                     }
                     else if (emotionlist[finalemotion] == "Neutral")
                     {
-                        EmotionLabel.Content = "&#x1F611;";
+                        EmotionLabel.Content = char.ConvertFromUtf32(0x1F610);
                     }
                     else if (emotionlist[finalemotion] == "Sad")
                     {
-                        EmotionLabel.Content = "&#x1F622;";
+                        EmotionLabel.Content = char.ConvertFromUtf32(0x1F622);
                     }
                     else if (emotionlist[finalemotion] == "Angry")
                     {
-                        EmotionLabel.Content = "&#x1F626;";
+                        EmotionLabel.Content = char.ConvertFromUtf32(0x1F626);
                     }
                     else if (emotionlist[finalemotion] == "Surprised")
                     {
-                        EmotionLabel.Content = "&#x1F62E;";
+                        EmotionLabel.Content = char.ConvertFromUtf32(0x1F62E);
                     }
                     else if (emotionlist[finalemotion] == "Disgust")
                     {
-                        EmotionLabel.Content = "&#x1F615;";
+                        EmotionLabel.Content = char.ConvertFromUtf32(0x1F615);
                     }
                     else
                     {
-                        EmotionLabel.Content = "&#x1F60D;";
+                        EmotionLabel.Content = char.ConvertFromUtf32(0x1F60D);
                     }
 
                     foreach (string word in words)
