@@ -14,6 +14,7 @@ using Brushes = System.Windows.Media.Brushes;
 using System.Diagnostics;
 using System.ComponentModel;
 using System.Data.SqlClient;
+using System.Threading;
 
 namespace test
 {
@@ -154,7 +155,8 @@ namespace test
                 }
                 counter++;
             }
-            //DisplayLatestData();
+            Thread.Sleep(1000);
+            DisplayLatestData();
         }
 
         int imagecounter = 1;
@@ -240,13 +242,21 @@ namespace test
 
         private void DisplayLatestData()
         {
-            string connectionstring = "SELECT TOP 1 * FROM PersonData ORDER BY TimeStamp DESC";
+            List<string> searchList = new List<string>();
             try
             {
-                SQLDataRetrieve.PersonData persondata = SQLDataRetrieve.GetPersonDatabaseData(connectionstring);
-                AgeLabel.Content = persondata.Age;
-                GenderLabel.Content = persondata.Gender;
-                ClassLabel.Content = persondata.Style1;
+                var reader = new StreamReader(File.OpenRead(@"data.csv"));
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    Console.WriteLine(line);
+                    searchList.Add(line);
+                }
+                reader.Close();
+                string[] words = line.Split(',');
+                AgeLabel.Content = words[1];
+                GenderLabel.Content = words[2];
+                ClassLabel.Content = words[10];
 
                 List<string> emotionlist = new List<string> { "Angry", "Disgust", "Fear", "Happy", "Sad", "Surprised", "Neutral" };
 
@@ -258,13 +268,13 @@ namespace test
                 double surprised;
                 double neutral;
 
-                double.TryParse(persondata.Angry, out angry);
-                double.TryParse(persondata.Disgust, out disgust);
-                double.TryParse(persondata.Fear, out fear);
-                double.TryParse(persondata.Happy, out happy);
-                double.TryParse(persondata.Sad, out sad);
-                double.TryParse(persondata.Surprised, out surprised);
-                double.TryParse(persondata.Neutral, out neutral);
+                double.TryParse(words[3], out angry);
+                double.TryParse(words[4], out disgust);
+                double.TryParse(words[5], out fear);
+                double.TryParse(words[6], out happy);
+                double.TryParse(words[7], out sad);
+                double.TryParse(words[8], out surprised);
+                double.TryParse(words[9], out neutral);
 
                 List<double> emotion = new List<double> { angry, disgust, fear, happy, sad, surprised, neutral };
                 int finalemotion = emotion.IndexOf(emotion.Max());
