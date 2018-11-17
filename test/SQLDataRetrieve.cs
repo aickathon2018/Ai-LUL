@@ -40,17 +40,17 @@ namespace test
                     {
                         while (reader.Read())
                         {
-                            person.ID = reader.GetString(0);
-                            person.Age = reader.GetString(0);
-                            person.Gender = reader.GetString(0);
-                            person.Angry = reader.GetString(0);
-                            person.Disgust = reader.GetString(0);
-                            person.Fear = reader.GetString(0);
-                            person.Happy = reader.GetString(0);
-                            person.Sad = reader.GetString(0);
-                            person.Surprised = reader.GetString(0);
-                            person.Neutral = reader.GetString(0);
-                            person.Style1 = reader.GetString(0);
+                            person.ID = reader.GetString(1);
+                            person.Age = reader.GetString(2);
+                            person.Gender = reader.GetString(3);
+                            person.Angry = reader.GetString(4);
+                            person.Disgust = reader.GetString(5);
+                            person.Fear = reader.GetString(6);
+                            person.Happy = reader.GetString(7);
+                            person.Sad = reader.GetString(8);
+                            person.Surprised = reader.GetString(9);
+                            person.Neutral = reader.GetString(10);
+                            person.Style1 = reader.GetString(11);
                         }
                     }
                 }

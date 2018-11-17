@@ -25,13 +25,12 @@ namespace test
         VideoCapture capture;
         CascadeClassifier head;
         public volatile DispatcherTimer timer;
-        public volatile DispatcherTimer csvUpdate;
+        public volatile DispatcherTimer DataUpdateTimer;
         string humanheightcm = "10";
         System.Drawing.Rectangle face;
         System.Drawing.Rectangle body;
         Image<Bgr, Byte> imgInput;
         BackgroundWorker backgroundWorker1 = new BackgroundWorker();
-        List<string> result;
 
         public MainWindow()
         {
@@ -44,9 +43,9 @@ namespace test
             //CaptureFrame.IsEnabled = false;
         }
 
-        private void csvUpdate_tick(object sender, EventArgs e)
+        private void DataUpdate_tick(object sender, EventArgs e)
         {
-            result = loadCsvFile();
+            DisplayLatestData();
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -104,17 +103,16 @@ namespace test
             //timer 1 stuff + Stopwatch
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(timer_Tick);
-            timer.Interval = new TimeSpan(1);       //set the refresh rate to 1 mili seconds
+            timer.Interval = new TimeSpan(0,0,0,0,1);       //set the refresh rate to 1 mili seconds
             timer.Start();
-            csvUpdate = new DispatcherTimer();
-            csvUpdate.Tick += new EventHandler(csvUpdate_tick);
-            csvUpdate.Interval = new TimeSpan(5);
-            csvUpdate.Start();
+            DataUpdateTimer = new DispatcherTimer();
+            DataUpdateTimer.Tick += new EventHandler(DataUpdate_tick);
+            DataUpdateTimer.Interval = new TimeSpan(0,0,0,0,1);
+            DataUpdateTimer.Start();
 
             //start capture images with webcam
             capture.Start();
             //backgroundWorker1.RunWorkerAsync();
-            List<string> result = loadCsvFile();
         }
 
         int counter = 0;
@@ -156,7 +154,7 @@ namespace test
                 }
                 counter++;
             }
-            
+            DisplayLatestData();
         }
 
         int imagecounter = 1;
@@ -240,10 +238,9 @@ namespace test
             myProcess.Close();
         }
 
-        private List<string> loadCsvFile()
+        private void DisplayLatestData()
         {
-            List<string> searchList = new List<string>();
-            string connectionstring = "ELECT TOP 1 * FROM PersonData ORDER BY ID DESC";
+            string connectionstring = "SELECT TOP 1 * FROM PersonData ORDER BY TimeStamp DESC";
             try
             {
                 SQLDataRetrieve.PersonData persondata = SQLDataRetrieve.GetPersonDatabaseData(connectionstring);
@@ -306,7 +303,6 @@ namespace test
             {
 
             }
-            return searchList;
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
