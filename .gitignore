@@ -250,3 +250,4 @@ paket-files/
 __pycache__/
 *.pyc
 *.jpg
+*.exe
