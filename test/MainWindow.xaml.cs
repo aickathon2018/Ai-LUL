@@ -306,7 +306,7 @@ namespace test
                     {
                         EmotionLabel.Content = char.ConvertFromUtf32(0x1F60D);
                     }
-
+                    EmotionLabel2.Content = emotionlist[finalemotion];
                     foreach (string word in words)
                     {
                         Console.WriteLine(word);
@@ -323,7 +323,7 @@ namespace test
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }
