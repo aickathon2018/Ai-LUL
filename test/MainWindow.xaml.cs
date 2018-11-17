@@ -275,7 +275,36 @@ namespace test
 
                     List<double> emotion = new List<double> { angry, disgust, fear, happy, sad, surprised, neutral };
                     int finalemotion = emotion.IndexOf(emotion.Max());
-                    EmotionLabel.Content = emotionlist[finalemotion];
+
+                    if(emotionlist[finalemotion] == "Happy")
+                    {
+                        EmotionLabel.Content = "&#x1F604;";
+                    }
+                    else if (emotionlist[finalemotion] == "Neutral")
+                    {
+                        EmotionLabel.Content = "&#x1F611;";
+                    }
+                    else if (emotionlist[finalemotion] == "Sad")
+                    {
+                        EmotionLabel.Content = "&#x1F622;";
+                    }
+                    else if (emotionlist[finalemotion] == "Angry")
+                    {
+                        EmotionLabel.Content = "&#x1F626;";
+                    }
+                    else if (emotionlist[finalemotion] == "Surprised")
+                    {
+                        EmotionLabel.Content = "&#x1F62E;";
+                    }
+                    else if (emotionlist[finalemotion] == "Disgust")
+                    {
+                        EmotionLabel.Content = "&#x1F615;";
+                    }
+                    else
+                    {
+                        EmotionLabel.Content = "&#x1F60D;";
+                    }
+
                     foreach (string word in words)
                     {
                         Console.WriteLine(word);
@@ -290,6 +319,11 @@ namespace test
 
             
             return searchList;
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
