@@ -139,15 +139,19 @@
         <Grid Grid.Column="7" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.02*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="0.02*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
+            <Label Grid.Column="1" Grid.Row="0" Background="DarkCyan"/>
+            <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="DarkCyan"/>
             <Image x:Name="FacePic" Stretch="Fill" Panel.ZIndex="1"/>
         </Grid>
         
