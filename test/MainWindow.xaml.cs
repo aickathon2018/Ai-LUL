@@ -45,7 +45,7 @@ namespace test
 
         private void DataUpdate_tick(object sender, EventArgs e)
         {
-            DisplayLatestData();
+            
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -103,7 +103,7 @@ namespace test
             //timer 1 stuff + Stopwatch
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(timer_Tick);
-            timer.Interval = new TimeSpan(0,0,0,0,1);       //set the refresh rate to 1 mili seconds
+            timer.Interval = new TimeSpan(1);       //set the refresh rate to 1 mili seconds
             timer.Start();
             DataUpdateTimer = new DispatcherTimer();
             DataUpdateTimer.Tick += new EventHandler(DataUpdate_tick);
@@ -154,7 +154,7 @@ namespace test
                 }
                 counter++;
             }
-            DisplayLatestData();
+            //DisplayLatestData();
         }
 
         int imagecounter = 1;
