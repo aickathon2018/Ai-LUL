@@ -13,6 +13,7 @@ using System.IO;
 using Brushes = System.Windows.Media.Brushes;
 using System.Diagnostics;
 using System.ComponentModel;
+using System.Data.SqlClient;
 
 namespace test
 {
@@ -319,11 +320,6 @@ namespace test
 
             
             return searchList;
-        }
-
-        private void Close_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }
