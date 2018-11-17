@@ -317,9 +317,12 @@ namespace test
             {
 
             }
-
-            
             return searchList;
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
