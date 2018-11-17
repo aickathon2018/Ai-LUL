@@ -13,6 +13,7 @@ using System.IO;
 using Brushes = System.Windows.Media.Brushes;
 using System.Diagnostics;
 using System.ComponentModel;
+using System.Data.SqlClient;
 
 namespace test
 {
@@ -291,5 +292,63 @@ namespace test
             
             return searchList;
         }
+
+        public static SqlConnectionStringBuilder ConnectionString()
+        {
+            SqlConnectionStringBuilder sql = new SqlConnectionStringBuilder();
+
+            sql.DataSource = "lorawan-hank.database.windows.net";
+            sql.UserID = "Hank";
+            sql.Password = "Lorawan1234";
+            sql.InitialCatalog = "LoraWan Database";
+
+            return sql;
+        }
+
+        private void SQLRetrieveData()
+        {
+
+        }
+
+        public class PersonData
+        {
+            public List<SensorData> dust
+            {
+                get;
+                set;
+            }
+
+            public List<SensorData> uv
+            {
+                get;
+                set;
+            }
+
+            public List<SensorData> temperature
+            {
+                get;
+                set;
+            }
+
+            public List<SensorData> pressure
+            {
+                get;
+                set;
+            }
+
+            public List<SensorData> humidity
+            {
+                get;
+                set;
+            }
+
+            public List<SensorData> rssi
+            {
+                get;
+                set;
+            }
+        }
+
+
     }
 }
