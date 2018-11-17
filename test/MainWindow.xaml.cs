@@ -313,6 +313,12 @@ namespace test
             {
 
             }
+<<<<<<< HEAD
+=======
+
+            
+            return searchList;
+>>>>>>> parent of 9597da7... Merge branch 'master' of https://github.com/ivanling92/AI-LUL_UPGRADE
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
