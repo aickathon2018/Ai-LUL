@@ -13,7 +13,6 @@ using System.IO;
 using Brushes = System.Windows.Media.Brushes;
 using System.Diagnostics;
 using System.ComponentModel;
-using System.Data.SqlClient;
 
 namespace test
 {
@@ -276,7 +275,36 @@ namespace test
 
                     List<double> emotion = new List<double> { angry, disgust, fear, happy, sad, surprised, neutral };
                     int finalemotion = emotion.IndexOf(emotion.Max());
-                    EmotionLabel.Content = emotionlist[finalemotion];
+
+                    if(emotionlist[finalemotion] == "Happy")
+                    {
+                        EmotionLabel.Content = "&#x1F604;";
+                    }
+                    else if (emotionlist[finalemotion] == "Neutral")
+                    {
+                        EmotionLabel.Content = "&#x1F611;";
+                    }
+                    else if (emotionlist[finalemotion] == "Sad")
+                    {
+                        EmotionLabel.Content = "&#x1F622;";
+                    }
+                    else if (emotionlist[finalemotion] == "Angry")
+                    {
+                        EmotionLabel.Content = "&#x1F626;";
+                    }
+                    else if (emotionlist[finalemotion] == "Surprised")
+                    {
+                        EmotionLabel.Content = "&#x1F62E;";
+                    }
+                    else if (emotionlist[finalemotion] == "Disgust")
+                    {
+                        EmotionLabel.Content = "&#x1F615;";
+                    }
+                    else
+                    {
+                        EmotionLabel.Content = "&#x1F60D;";
+                    }
+
                     foreach (string word in words)
                     {
                         Console.WriteLine(word);
@@ -293,62 +321,9 @@ namespace test
             return searchList;
         }
 
-        public static SqlConnectionStringBuilder ConnectionString()
+        private void Close_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnectionStringBuilder sql = new SqlConnectionStringBuilder();
-
-            sql.DataSource = "lorawan-hank.database.windows.net";
-            sql.UserID = "Hank";
-            sql.Password = "Lorawan1234";
-            sql.InitialCatalog = "LoraWan Database";
-
-            return sql;
+            this.Close();
         }
-
-        private void SQLRetrieveData()
-        {
-
-        }
-
-        public class PersonData
-        {
-            public List<SensorData> dust
-            {
-                get;
-                set;
-            }
-
-            public List<SensorData> uv
-            {
-                get;
-                set;
-            }
-
-            public List<SensorData> temperature
-            {
-                get;
-                set;
-            }
-
-            public List<SensorData> pressure
-            {
-                get;
-                set;
-            }
-
-            public List<SensorData> humidity
-            {
-                get;
-                set;
-            }
-
-            public List<SensorData> rssi
-            {
-                get;
-                set;
-            }
-        }
-
-
     }
 }

@@ -111,10 +111,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="black.png" />
-    <Resource Include="adimages\image1.jpeg" />
-    <Resource Include="adimages\image2.jpeg" />
-    <Resource Include="adimages\image3.jpeg" />
-    <Resource Include="adimages\image4.jpeg" />
+    <Resource Include="adimages\image1.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="adimages\image2.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="adimages\image3.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="adimages\image4.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="concrt140.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
