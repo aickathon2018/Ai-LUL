@@ -65,7 +65,7 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid Background="#19000000">
+    <Grid Background="#CCFFFFFF">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.01*"/>
             <RowDefinition Height="4*"/>
@@ -88,9 +88,9 @@
             <ColumnDefinition Width="0.01*"/>
         </Grid.ColumnDefinitions>
 
-        <Image x:Name="TrackingVideo" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Stretch="Fill" Source="black.png" Margin="10,10,0,0"/>
-        <Image x:Name="BodyPic" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2" Source="black.png" Stretch="Fill" Margin="0,10,10,0"/>
-        <Image x:Name="Advertisement" Grid.Column="1" Grid.Row="0" Grid.RowSpan="6" Grid.ColumnSpan="2" OpacityMask="White" Source="adimages/image1.jpeg" Stretch="Fill" Margin="10"/>
+        <Image x:Name="TrackingVideo" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Stretch="Fill" Source="black.png" Margin="10,50,0,0"/>
+        <Image x:Name="BodyPic" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2" Source="black.png" Stretch="Fill" Margin="0,50,10,0"/>
+        <Image x:Name="Advertisement" Grid.Column="1" Grid.Row="0" Grid.RowSpan="6" Grid.ColumnSpan="2" OpacityMask="White" Source="adimages/image1.jpeg" Stretch="Fill" Margin="20,30,20,10"/>
 
         <Grid Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="5" Margin="0,0,0,5">
             <Grid.ColumnDefinitions>
@@ -125,12 +125,12 @@
             </Grid.RowDefinitions>
             <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" Background="DarkCyan"/>
             <Label Grid.Column="0" Grid.Row="0" Content="Age:" FontSize="25" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Label Grid.Column="2" Grid.Row="2" Content="Class:" FontSize="25" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Label Grid.Column="2" Grid.Row="0" Content="Emotion:" FontSize="25" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label x:Name="EmotionLabel2" Grid.Column="3" Grid.Row="2" Content="Sad" FontSize="25" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label Grid.Column="2" Grid.Row="0" Content="&#x1F454;" FontSize="56" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Label Grid.Column="0" Grid.Row="2" Content="Gender:" FontSize="25" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             
             <Label x:Name="AgeLabel" Grid.Column="1" Grid.Row="0" Content="34" FontSize="25" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Label x:Name="ClassLabel" Grid.Column="3" Grid.Row="2" Content="Hipster" FontSize="25" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label x:Name="ClassLabel" Grid.Column="2" Grid.Row="2" Content="Hipster" FontSize="25" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Label x:Name="EmotionLabel" Grid.Column="3" FontFamily="Segoe UI Symbol"  Grid.Row="0" Content="&#x1F61F;" FontSize="56" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Label x:Name="GenderLabel" Grid.Column="1" Grid.Row="2" Content="Male" FontSize="25" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             
@@ -138,7 +138,7 @@
 
         </Grid>
 
-        <Grid Grid.Column="7" Grid.Row="1">
+        <Grid Grid.Column="7" Grid.Row="1" Margin="0,50,0,30">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="0.02*"/>
@@ -154,13 +154,13 @@
 
             <Label Grid.Column="1" Grid.Row="0" Background="DarkCyan"/>
             <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="DarkCyan"/>
-            <Image x:Name="FacePic" Stretch="Fill" Panel.ZIndex="1"/>
+            <Image x:Name="FacePic" Stretch="Fill" Panel.ZIndex="1" Margin="0"/>
         </Grid>
         
-        <Label Grid.Column="6" Grid.Row="1" Grid.RowSpan="3" Background="DarkCyan"/>
+        <!--<Label Grid.Column="6" Grid.Row="1" Grid.RowSpan="3" Background="DarkCyan"/>
         <Label Grid.Column="3" Grid.Row="1" Grid.RowSpan="6" Background="DarkCyan"/>
         <Label Grid.Column="0" Grid.Row="1" Grid.RowSpan="6" Background="DarkCyan"/>
         <Label Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="5" Background="DarkCyan"/>
-        <Label Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="5" Background="DarkCyan"/>
+        <Label Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="5" Background="DarkCyan"/>-->
     </Grid>
 </Window>
