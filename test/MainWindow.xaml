@@ -88,7 +88,7 @@
         </Grid.ColumnDefinitions>
 
         <Image x:Name="TrackingVideo" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Stretch="Fill" Source="black.png"/>
-        <Image x:Name="FacePic" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2" Source="black.png" Stretch="Fill"/>
+        <Image x:Name="BodyPic" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2" Source="black.png" Stretch="Fill"/>
         <Image x:Name="Advertisement" Grid.Column="1" Grid.Row="0" Grid.RowSpan="6" Grid.ColumnSpan="2" OpacityMask="White" Source="adimages/image1.jpeg" Stretch="Fill"/>
 
         <Grid Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="5">
@@ -134,6 +134,21 @@
             
             <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" Background="DarkCyan"/>
 
+        </Grid>
+
+        <Grid Grid.Column="7" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Image x:Name="FacePic" Stretch="Fill" Panel.ZIndex="1"/>
         </Grid>
         
         <Label Grid.Column="6" Grid.Row="1" Grid.RowSpan="3" Background="DarkCyan"/>

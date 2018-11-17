@@ -1,29 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Drawing;
 using Emgu.CV;
-using System.Runtime.InteropServices;
 using Emgu.CV.Structure;
-using System.Timers;
 using AI_LUL;
 using System.Windows.Threading;
 using System.IO;
 using Brushes = System.Windows.Media.Brushes;
 using System.Diagnostics;
 using System.ComponentModel;
-using System.Globalization;
 
 namespace test
 {
@@ -52,8 +41,6 @@ namespace test
                 new RunWorkerCompletedEventHandler(
             backgroundWorker1_RunWorkerCompleted);
             //CaptureFrame.IsEnabled = false;
-            
-
         }
 
         private void csvUpdate_tick(object sender, EventArgs e)
@@ -99,7 +86,7 @@ namespace test
             using (System.Drawing.Bitmap source = image.Bitmap)
             {
                 IntPtr ptr = source.GetHbitmap(); //obtain the Hbitmap
-
+                
                 BitmapSource bs = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(ptr, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
 
                 return bs;
@@ -158,6 +145,7 @@ namespace test
                     imgInput.ROI = System.Drawing.Rectangle.Empty;
 
                     BitmapSource bs = ToBitmapSource(temp);
+                    BodyPic.Source = bs;
 
                     string filePath = "OUTPUT_PICS_body\\body" + counter + ".jpg";
                     var encoder = new JpegBitmapEncoder();
