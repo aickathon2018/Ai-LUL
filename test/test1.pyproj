@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6cf10c39-f626-4d2f-84e6-aa707b659203}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>WEB_SERVER.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId>Global|ContinuumAnalytics|Anaconda36-64</InterpreterId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\OUTPUT_PICS_body\body0.jpg" />
+    <Content Include="bin\Debug\OUTPUT_PICS_body\body1.jpg" />
+    <Content Include="bin\Debug\OUTPUT_PICS_body\body2.jpg" />
+    <Content Include="bin\Debug\OUTPUT_PICS_body\body3.jpg" />
+    <Content Include="bin\Debug\OUTPUT_PICS_body\body4.jpg" />
+    <Content Include="bin\Debug\OUTPUT_PICS_face\face0.jpg" />
+    <Content Include="bin\Debug\OUTPUT_PICS_face\face1.jpg" />
+    <Content Include="bin\Debug\OUTPUT_PICS_face\face2.jpg" />
+    <Content Include="bin\Debug\OUTPUT_PICS_face\face3.jpg" />
+    <Content Include="bin\Debug\OUTPUT_PICS_face\face4.jpg" />
+    <Content Include="black.png" />
+    <Content Include="obj\Debug\AI-LUL WPF.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\test.csproj.FileListAbsolute.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="WEB_SERVER.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\" />
+    <Folder Include="bin\Debug\" />
+    <Folder Include="bin\Debug\OUTPUT_PICS_body" />
+    <Folder Include="bin\Debug\OUTPUT_PICS_face" />
+    <Folder Include="obj\" />
+    <Folder Include="obj\Debug" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|ContinuumAnalytics|Anaconda36-64" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>
