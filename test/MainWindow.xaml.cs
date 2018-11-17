@@ -243,76 +243,64 @@ namespace test
         private List<string> loadCsvFile()
         {
             List<string> searchList = new List<string>();
+            string connectionstring = "ELECT TOP 1 * FROM PersonData ORDER BY ID DESC";
+            try
+            {
+                SQLDataRetrieve.PersonData persondata = SQLDataRetrieve.GetPersonDatabaseData(connectionstring);
+                AgeLabel.Content = persondata.Age;
+                GenderLabel.Content = persondata.Gender;
+                ClassLabel.Content = persondata.Style1;
 
-            try {
-                var reader = new StreamReader(File.OpenRead(@"data.csv"));
-                while (!reader.EndOfStream)
+                List<string> emotionlist = new List<string> { "Angry", "Disgust", "Fear", "Happy", "Sad", "Surprised", "Neutral" };
+
+                double angry;
+                double disgust;
+                double fear;
+                double happy;
+                double sad;
+                double surprised;
+                double neutral;
+
+                double.TryParse(persondata.Angry, out angry);
+                double.TryParse(persondata.Disgust, out disgust);
+                double.TryParse(persondata.Fear, out fear);
+                double.TryParse(persondata.Happy, out happy);
+                double.TryParse(persondata.Sad, out sad);
+                double.TryParse(persondata.Surprised, out surprised);
+                double.TryParse(persondata.Neutral, out neutral);
+
+                List<double> emotion = new List<double> { angry, disgust, fear, happy, sad, surprised, neutral };
+                int finalemotion = emotion.IndexOf(emotion.Max());
+
+                if (emotionlist[finalemotion] == "Happy")
                 {
-                    var line = reader.ReadLine();
-                    Console.WriteLine(line);
-                    searchList.Add(line);
-                    string[] words = line.Split(',');
-
-                    AgeLabel.Content = words[1];
-                    GenderLabel.Content = words[2];
-                    ClassLabel.Content = words[10];
-
-                    List<string> emotionlist = new List<string> { "Angry", "Disgust", "Fear", "Happy", "Sad", "Surprised", "Neutral" };
-
-                    double angry;
-                    double disgust;
-                    double fear;
-                    double happy;
-                    double sad;
-                    double surprised;
-                    double neutral;
-
-                    double.TryParse(words[3], out angry);
-                    double.TryParse(words[4], out disgust);
-                    double.TryParse(words[5], out fear);
-                    double.TryParse(words[6], out happy);
-                    double.TryParse(words[7], out sad);
-                    double.TryParse(words[8], out surprised);
-                    double.TryParse(words[9], out neutral);
-
-                    List<double> emotion = new List<double> { angry, disgust, fear, happy, sad, surprised, neutral };
-                    int finalemotion = emotion.IndexOf(emotion.Max());
-
-                    if(emotionlist[finalemotion] == "Happy")
-                    {
-                        EmotionLabel.Content = char.ConvertFromUtf32(0x1F604);
-                    }
-                    else if (emotionlist[finalemotion] == "Neutral")
-                    {
-                        EmotionLabel.Content = char.ConvertFromUtf32(0x1F610);
-                    }
-                    else if (emotionlist[finalemotion] == "Sad")
-                    {
-                        EmotionLabel.Content = char.ConvertFromUtf32(0x1F622);
-                    }
-                    else if (emotionlist[finalemotion] == "Angry")
-                    {
-                        EmotionLabel.Content = char.ConvertFromUtf32(0x1F626);
-                    }
-                    else if (emotionlist[finalemotion] == "Surprised")
-                    {
-                        EmotionLabel.Content = char.ConvertFromUtf32(0x1F62E);
-                    }
-                    else if (emotionlist[finalemotion] == "Disgust")
-                    {
-                        EmotionLabel.Content = char.ConvertFromUtf32(0x1F615);
-                    }
-                    else
-                    {
-                        EmotionLabel.Content = char.ConvertFromUtf32(0x1F60D);
-                    }
-                    EmotionLabel2.Content = emotionlist[finalemotion];
-                    foreach (string word in words)
-                    {
-                        Console.WriteLine(word);
-                    }
-
+                    EmotionLabel.Content = char.ConvertFromUtf32(0x1F604);
                 }
+                else if (emotionlist[finalemotion] == "Neutral")
+                {
+                    EmotionLabel.Content = char.ConvertFromUtf32(0x1F610);
+                }
+                else if (emotionlist[finalemotion] == "Sad")
+                {
+                    EmotionLabel.Content = char.ConvertFromUtf32(0x1F622);
+                }
+                else if (emotionlist[finalemotion] == "Angry")
+                {
+                    EmotionLabel.Content = char.ConvertFromUtf32(0x1F626);
+                }
+                else if (emotionlist[finalemotion] == "Surprised")
+                {
+                    EmotionLabel.Content = char.ConvertFromUtf32(0x1F62E);
+                }
+                else if (emotionlist[finalemotion] == "Disgust")
+                {
+                    EmotionLabel.Content = char.ConvertFromUtf32(0x1F615);
+                }
+                else
+                {
+                    EmotionLabel.Content = char.ConvertFromUtf32(0x1F60D);
+                }
+                EmotionLabel2.Content = emotionlist[finalemotion];
             }
             catch
             {

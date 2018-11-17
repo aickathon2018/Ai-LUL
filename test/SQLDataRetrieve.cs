@@ -143,36 +143,6 @@ namespace test
                 get;
                 set;
             }
-
-            public string VStyle1
-            {
-                get;
-                set;
-            }
-
-            public string Style2
-            {
-                get;
-                set;
-            }
-
-            public string VStyle2
-            {
-                get;
-                set;
-            }
-
-            public string Style3
-            {
-                get;
-                set;
-            }
-
-            public string VStyle3
-            {
-                get;
-                set;
-            }
         }
     }
 }
