@@ -2,7 +2,7 @@
 # Introduction :laughing:
 Hey guys Hank here! This project is for Aickathon 2018! If you have any questions please ask!
 
-# There are two projects here, Python Code and Raspberry PI Gateway
+# There are two projects here, Python Code and AI-LUL WPF
 The folder Arduino Code contains the code for Arduino, please check the README folder inside it! As for the gateway, continue reading the details below.
 
 # Getting Started
