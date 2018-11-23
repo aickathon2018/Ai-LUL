@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:test"
         mc:Ignorable="d"
-        AllowsTransparency="True"
-        Title="MainWindow" Height="450" Width="800" WindowState="Maximized" WindowStyle="None" Background="#99FFFFFF" Foreground="#D1E2DDDD" >
+        AllowsTransparency="False"
+        Title="MainWindow" Height="450" Width="800" WindowState="Maximized" WindowStyle="None" Foreground="#D1E2DDDD" >
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -65,6 +65,9 @@
             </Setter>
         </Style>
     </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="adimages/shoppingcenter.jpg"/>
+    </Window.Background>
     <Grid Background="#19000000">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.01*"/>
@@ -90,11 +93,14 @@
 
         <Image x:Name="TrackingVideo" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Stretch="Fill" Source="black.png" Margin="10,50,0,0"/>
         <Image x:Name="BodyPic" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2" Source="black.png" Stretch="Fill" Margin="0,50,10,0"/>
-        <Image x:Name="Advertisement" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="2" OpacityMask="White" Source="adimages/image1.jpeg" Stretch="Fill" Margin="26,60,25,14" Panel.ZIndex="2" RenderTransformOrigin="0.5,0.5"/>
-        <Image x:Name="AdvertisementStand" Grid.Column="1" Grid.Row="0" Grid.RowSpan="6" Grid.ColumnSpan="2" OpacityMask="White" Source="adimages/stand.png" Stretch="Fill" Margin="10,50,10,5" Panel.ZIndex="5"/>
+        <Image x:Name="Advertisement" Grid.Column="1" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2" OpacityMask="White" Source="adimages/image1.jpeg" Stretch="Fill" Margin="53,127,63.6,0.4" Panel.ZIndex="2" RenderTransformOrigin="0.5,0.5"/>
+        <Image x:Name="AdvertisementStand" Grid.Column="1" Grid.Row="1" Grid.RowSpan="6" Grid.ColumnSpan="2" OpacityMask="White" Source="adimages/stand.png" Stretch="Fill" Margin="42,106.2,53.6,-0.4" Panel.ZIndex="5"/>
+        <Image x:Name="logo" Grid.Column="1" Grid.Row="1"  Grid.ColumnSpan="3
+               " OpacityMask="White" Source="adimages/USMC_Logo_Marine_RGB.png" Panel.ZIndex="2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="181" Margin="10,20,10,10"/>
+        <Label Content="AI-LUL Demo Kit" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontSize="48" FontFamily="Bebas Neue" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,10,0,0" />
+        <WebBrowser x:Name="Dashboard" Grid.Row="1" Grid.RowSpan="6" Grid.ColumnSpan="9" Panel.ZIndex="5" Margin="50,50,80,50" Source="{x:Null}" Visibility="Hidden" Width="500"/>
 
-
-        <Grid Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="5" Margin="0,0,0,5">
+        <Grid Grid.Column="5" Grid.ColumnSpan="4" Grid.Row="5" Margin="0,0,10,5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -105,7 +111,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
+            <Button x:Name="Stats" Grid.Column="1"  FontSize="20" FontFamily="Segoe MDL2 Assets" Background="Black" Foreground="Azure" Content ="&#xE774;" Style="{DynamicResource ButtonStyle_Notrigger}" Click="ShowWeb"/>
             <Button x:Name="Previous" Grid.Column="2"  FontSize="20" FontFamily="Segoe MDL2 Assets" Background="Black" Foreground="Azure" Content ="&#xE72B;" Style="{DynamicResource ButtonStyle_Notrigger}" Click="Previous_Click_1"/>
             <Button x:Name="Next" Grid.Column="3" FontSize="20" FontFamily="Segoe MDL2 Assets" Background="Black" Foreground="Azure" Content ="&#xE72A;" Click="Next_Click" Style="{DynamicResource ButtonStyle_Notrigger}"/>
             <Button x:Name="StartCapture" Grid.Column="4" FontSize="20" FontFamily="Segoe MDL2 Assets" Background="Black" Foreground="Azure" Content ="&#xE768;" Click="StartCapture_Click" Style="{DynamicResource ButtonStyle_Notrigger}"/>
@@ -113,7 +119,7 @@
             <Button x:Name="Close" Grid.Column="6" FontSize="20" FontFamily="Segoe MDL2 Assets" Background="Black" Foreground="PaleVioletRed" Content ="&#xE711;" Style="{DynamicResource ButtonStyle_Notrigger}" Click="Close_Click"/>
         </Grid>
 
-        <Grid Grid.Column="3" Grid.ColumnSpan="8" Grid.Row="3" Background="#F22A2B4B" Margin="10,0,10,10">
+        <Grid Grid.Column="3" Grid.ColumnSpan="8" Grid.Row="3" Background="#B22A2B4B" Margin="10,0,10,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>

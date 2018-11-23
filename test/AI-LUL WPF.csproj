@@ -117,6 +117,8 @@
     <Resource Include="adimages\image4.jpeg" />
     <Resource Include="adimages\DisplayStand.jpg" />
     <Resource Include="adimages\stand.png" />
+    <Resource Include="adimages\shoppingcenter.jpg" />
+    <Resource Include="adimages\USMC_Logo_Marine_RGB.png" />
     <Content Include="concrt140.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

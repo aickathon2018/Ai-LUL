@@ -53,7 +53,10 @@ while(1):
                         #row_of_data.append(key+face_detection["faces"][i]["emotions"][key])
                         row_of_data.append(emotion_string)
                     #print("\n\n")
+            except:
+                print("Face failed");     
 
+            try:
                 for i in range(0,len(content_fashion["person"]["styles"]),1):
                     #print(content_fashion["person"]["styles"][i]['styleName'],"with an accuracy of:",content_fashion["person"]["styles"][i]['confidence'])
                     #style_string = (str(content_fashion["person"]["styles"][i]['styleName']) +':'+ str(content_fashion["person"]["styles"][i]['confidence']))
@@ -68,7 +71,7 @@ while(1):
                 writer.writerow(row_of_data)
                 file.close()
             except:
-                print("API Timeout--retrying...");
+                print("Fashion Failed");
             #time.sleep(5) 
            
     #else:

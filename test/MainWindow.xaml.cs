@@ -410,5 +410,19 @@ namespace test
         {
             this.Close();
         }
+
+        private void ShowWeb(object sender, RoutedEventArgs e)
+        {
+            if(Dashboard.Visibility == Visibility.Hidden)
+            {
+                Dashboard.Visibility = Visibility.Visible;
+                Dashboard.Navigate(new Uri("http://ailul.azurewebsites.net"));
+            }
+            else
+            {
+                Dashboard.Visibility = Visibility.Hidden;
+            }
+
+        }
     }
 }
